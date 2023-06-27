@@ -328,7 +328,8 @@ class InterfacesUpdater(MIBUpdater):
         elif oid in self.vlan_oid_name_map:
             return self.vlan_oid_name_map[oid]
 
-        return self.if_alias_map[self.oid_name_map[oid]]
+        # Don't use alias map here to get the EthernetX name (unlike ifName)
+        return self.oid_name_map[oid]
 
     def _get_counter(self, oid, table_name):
         """
